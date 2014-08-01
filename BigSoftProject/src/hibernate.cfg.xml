@@ -12,7 +12,7 @@
         <property name="connection.password">manutd</property>
          
         <!-- JDBC connection pool (use the built-in) -->
-        <property name="connection.pool_size">1</property>
+        <property name="connection.pool_size">10</property>
          
         <!-- SQL dialect -->
         <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
@@ -29,6 +29,7 @@
         <property name="hbm2ddl.auto">validate</property>
         
         <mapping class="com.bigsoft.entity.UserEntity"/>
+        <mapping class="com.bigsoft.entity.RoleEntity"/>
         
     </session-factory>
 </hibernate-configuration>

@@ -5,6 +5,8 @@ package com.bigsoft.entity;
 
 import javax.persistence.*;
 
+
+
 /**
  * @author Mishchuk_AA
  *
@@ -13,14 +15,18 @@ import javax.persistence.*;
 @Table(name="user")
 public class UserEntity {
 	
-	public UserEntity(int id, String name, int roleId, String login,
-			String password) {
+	@Column(name="status")
+	private boolean status;
+
+	public UserEntity(int id, String name, RoleEntity role, String login,
+			String password, boolean status) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.roleId = roleId;
+		this.role = role;
 		this.login = login;
 		this.password = password;
+		this.status = status;
 	}
 
 	@Id 
@@ -29,9 +35,10 @@ public class UserEntity {
 	
 	@Column(name="name")
 	private String name;
-	
-	@Column(name="role_id")
-	private int roleId;
+
+	@ManyToOne
+	@JoinColumn(name="role_id")
+	private RoleEntity role;
 	
 	@Column(name="login")
 	private String login;	
@@ -58,12 +65,12 @@ public class UserEntity {
 		this.name = name;
 	}
 
-	public int getRoleId() {
-		return roleId;
+	public RoleEntity getRole() {
+		return role;
 	}
 
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
+	public void setRole(RoleEntity role) {
+		this.role = role;
 	}
 
 	public String getLogin() {
@@ -85,6 +92,14 @@ public class UserEntity {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", login=" + login + ", password=" + password + "]";
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 
 	
